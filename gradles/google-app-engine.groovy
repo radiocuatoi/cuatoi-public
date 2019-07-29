@@ -40,7 +40,7 @@ ADD . /app/
     task appengineDockerRun(type: Exec, dependsOn: 'appengineDockerBuild') {
         group = 'cuatoi'
         commandLine "docker", "run", "--rm", "--network=host", "--sig-proxy=true",
-                "-v=gcloud-java-gradle:/root/.gradle", "--name=$gaeProject-dev", "$gaeProject:dev",
+                "-v=gcloud-java-root:/root", "--name=$gaeProject-dev", "$gaeProject:dev",
                 "./gradlew", "clean", "appengineRun"
     }
     task appengineDockerDeploy(type: Exec, dependsOn: 'appengineDockerBuild') {
@@ -50,7 +50,7 @@ ADD . /app/
                     "./gradlew clean appengineDeploy"
         }
         commandLine 'docker', "run", "--rm", "--network=host", "--sig-proxy=true",
-                "-v=gcloud-java-gradle:/root/.gradle",
+                "-v=gcloud-java-root:/root",
                 "-v=$buildDir/deploy.sh:/app/deploy.sh",
                 "--name=$gaeProject-dev", "$gaeProject:dev",
                 "sh", "./deploy.sh"
@@ -62,7 +62,7 @@ ADD . /app/
                     "./gradlew clean appengineDeployCron"
         }
         commandLine 'docker', "run", "--rm", "--network=host", "--sig-proxy=true",
-                "-v=gcloud-java-gradle:/root/.gradle",
+                "-v=gcloud-java-root:/root",
                 "-v=$buildDir/deploy.sh:/app/deploy.sh",
                 "--name=$gaeProject-dev", "$gaeProject:dev",
                 "sh", "./deploy.sh"
