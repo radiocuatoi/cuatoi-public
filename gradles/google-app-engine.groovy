@@ -33,7 +33,6 @@ ENV PATH \$PATH:\$JAVA_HOME/jre/bin:\$JAVA_HOME/bin
 RUN java -version && javac -version
 WORKDIR /app/
 ADD . /app/
-RUN ./gradlew downloadCloudSdk
 """
         }
         commandLine 'docker', "build", "--pull", "-t", "$gaeProject:dev", "-f", "$buildDir/Dockerfile", "."
