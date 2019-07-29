@@ -30,11 +30,10 @@ RUN apk --no-cache add openjdk11 --repository=http://dl-cdn.alpinelinux.org/alpi
 RUN apk --no-cache add nss
 ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk
 ENV PATH \$PATH:\$JAVA_HOME/jre/bin:\$JAVA_HOME/bin
-RUN gcloud components install app-engine-java
 RUN java -version && javac -version
 WORKDIR /app/
-
 ADD . /app/
+RUN ./gradlew downloadCloudSdk
 """
         }
         commandLine 'docker', "build", "--pull", "-t", "$gaeProject:dev", "-f", "$buildDir/Dockerfile", "."
