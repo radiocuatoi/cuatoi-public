@@ -13,10 +13,6 @@ ext.googleAppEngine = { gaeProject ->
     appengineDeploy.dependsOn test
     appengineStage.dependsOn test
 
-    dependencies {
-        providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
-    }
-
     appengine {
         deploy {
             projectId = gaeProject
