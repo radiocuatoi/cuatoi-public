@@ -3,7 +3,7 @@ println '''To enable GAE support:
 - add the following config:
 buildscript {
     dependencies {
-        classpath "com.google.cloud.tools:appengine-gradle-plugin:2.0.1"
+        classpath "com.google.cloud.tools:appengine-gradle-plugin:1.3.5"
     }
 }
 '''
@@ -15,7 +15,7 @@ ext.googleAppEngine = { gaeProject ->
 
     appengine {
         deploy {
-            projectId = gaeProject
+            project = gaeProject
             stopPreviousVersion = true
             promote = true
             version = '1'
@@ -31,6 +31,7 @@ RUN apk --no-cache add nss
 ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk
 ENV PATH \$PATH:\$JAVA_HOME/jre/bin:\$JAVA_HOME/bin
 RUN java -version && javac -version
+RUN gcloud components install app-engine-java
 WORKDIR /app/
 ADD . /app/
 """
