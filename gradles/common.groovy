@@ -3,5 +3,5 @@ compileJava {
 }
 task dockerClean(type: Exec, dependsOn: 'clean') {
     group = 'cuatoi'
-    commandLine 'docker', 'system', 'prune', '-f'
+    commandLine 'sh', '-c', 'docker system prune -f && docker rmi $(docker image list -q)'
 }
