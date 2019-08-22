@@ -35,6 +35,7 @@ cp /staging/build/Caddyfile ./
 cp /staging/build/run.sh ./
 cp /staging/build/start.sh ./
 cp /staging/build/libs/* ./
+echo 'java.runtime.version=11' > ./system.properties
 echo 'web: ./start.sh' > ./Procfile
 echo 'java.runtime.version=11' > system.properties
 echo "export HEROKU_APP_NAME=$APP_NAME" > ./setenv.sh
