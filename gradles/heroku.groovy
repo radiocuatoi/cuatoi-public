@@ -68,7 +68,7 @@ proxy / localhost:8080 {
             new File("$buildDir/run.sh").text = '''
 set -e
 export APP_PORT=8080
-java -Xss512k -Xms64m -Xmx256m -server\\
+java -Xss512k -Xms192m -Xmx192m -server\\
     -Duser.timezone=Asia/Ho_Chi_Minh \\
     -Dspring.profiles.active=default,prod \\
     -jar *.jar
