@@ -10,7 +10,7 @@ test {
 
 task dockerClean(type: Exec, dependsOn: 'clean') {
     group = 'cuatoi'
-    commandLine 'sh', '-c', 'docker system prune -af'
+    commandLine 'sh', '-c', 'docker system prune -f'
 }
 
 //set up git hooks
