@@ -68,4 +68,9 @@ ADD . /app/
                 "--name=$gaeProject-dev", "$gaeProject:dev",
                 "sh", "./deploy.sh"
     }
+    task appengineClean(type: Exec) {
+        group = 'cuatoi'
+        commandLine 'sh', '-c', "docker rmi $gaeProject:dev || true"
+    }
+    clean.dependsOn += 'appengineClean'
 }
