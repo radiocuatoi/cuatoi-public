@@ -108,4 +108,11 @@ RUN chmod +x build/*.sh
         }
         commandLine 'docker', "build", "--pull", "-t", "$rootProject.name:dev", "-f", "$buildDir/Dockerfile", "."
     }
+
+
+    task herokuClean(type: Exec) {
+        group = 'cuatoi'
+        commandLine 'sh', '-c', "docker rmi $rootProject.name:dev || true"
+    }
+    clean.dependsOn += 'herokuClean'
 }
