@@ -8,11 +8,6 @@ test {
     }
 }
 
-task dockerClean(type: Exec, dependsOn: 'clean') {
-    group = 'cuatoi'
-    commandLine 'sh', '-c', 'docker system prune -f'
-}
-
 //set up git hooks
 def preCommitFile = new File("$projectDir/.git/hooks/pre-commit")
 preCommitFile.text = """#!/bin/sh
